@@ -1,0 +1,26 @@
+prometheus:
+  server:
+    persistentVolume:
+      enabled: true
+      storageClass: prometheus
+      existingClaim: prometheus-pvc
+      
+grafana:
+  persistence:
+    enabled: true
+    storageClassName: grafana
+    existingClaim: grafana-pvc
+
+ingress:
+  enabled: true
+  className: public
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
+  hosts:
+    - host: grafana.local
+      paths:
+        - name: app-grafana
+          path: /(.*)
+          pathType: Prefix
+          port: 80
