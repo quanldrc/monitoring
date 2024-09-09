@@ -1,4 +1,5 @@
 prometheus:
+  enabled: false
   server:
     persistentVolume:
       enabled: true
@@ -6,10 +7,38 @@ prometheus:
       existingClaim: prometheus-pvc
       
 grafana:
+  enabled: false
   persistence:
     enabled: true
     storageClassName: grafana
     existingClaim: grafana-pvc
+
+postgresql:
+  enabled: true
+  fullnameOverride: postgresql
+  auth:
+    enablePostgresUser: true
+    postgresPassword: postgres
+    username: alex
+    password: alex123
+    database: app
+
+pgbouncer:
+  service:
+    type: NodePort
+  config:
+    adminUser: admin
+    adminPassword: admin123
+    databases:
+      app:
+        host: postgresql
+        port: 5432
+      player:
+        host: postgresql
+        port: 5432
+    userlist:
+      postgres: SCRAM-SHA-256$4096:f/RKfmxb0GB7Wgx4CgrJ0Q==$rT4D+2DwpwW968DfU2lcPTfbR57bqtz3Q28EUeZ4sKc=:tVnHzfm7Gr90+dCr8yB0sSm9Yxi5X86uF0be3o8EkbM=
+      alex: SCRAM-SHA-256$4096:ZPUOPFQ04QpyyhN/w47J/Q==$7xhSqRQoqh8+ilQhpg0zH8xHxjF1BV9A9ajjY0R+wdk=:Ni1JOOQq2GthVDgQYdqU3rfivBOb01g3ETbN21REEe4=
 
 ingress:
   enabled: true
@@ -24,3 +53,4 @@ ingress:
           path: /(.*)
           pathType: Prefix
           port: 80
+

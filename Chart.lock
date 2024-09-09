@@ -5,5 +5,11 @@ dependencies:
 - name: grafana
   repository: https://grafana.github.io/helm-charts
   version: 8.5.1
-digest: sha256:2d6ed3563ea297562fb206499308719ea4188bafa0b87799fa01cedcb1ebc3fa
-generated: "2024-09-07T23:01:54.912685768+07:00"
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 13.1.5
+- name: pgbouncer
+  repository: https://icoretech.github.io/helm
+  version: 2.3.2
+digest: sha256:e7993f4920d9924106651ccdbf54c0776ce4d49faba55e4397dec374c7308258
+generated: "2024-09-09T20:47:34.123416935+07:00"
