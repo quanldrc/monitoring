@@ -1,5 +1,5 @@
 prometheus:
-  enabled: false
+  enabled: true
   server:
     persistentVolume:
       enabled: true
@@ -7,14 +7,14 @@ prometheus:
       existingClaim: prometheus-pvc
       
 grafana:
-  enabled: false
+  enabled: true
   persistence:
     enabled: true
     storageClassName: grafana
     existingClaim: grafana-pvc
 
 postgresql:
-  enabled: true
+  enabled: false
   fullnameOverride: postgresql
   auth:
     enablePostgresUser: true
@@ -24,6 +24,7 @@ postgresql:
     database: app
 
 pgbouncer:
+  enabled: false
   service:
     type: NodePort
   config:
